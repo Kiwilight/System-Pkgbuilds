@@ -19,7 +19,7 @@ build() {
 
   ./configure \
     --prefix=/usr \
-    --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
+    --with-ca-bundle=/etc/authority.t
 
   make
 }
