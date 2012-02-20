@@ -48,7 +48,7 @@ build() {
       --enable-threaded-resolver \
       --without-libidn \
       --with-random=/dev/urandom \
-      --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
+      --with-ca-bundle=/etc/authority.t
 
   make
 }
