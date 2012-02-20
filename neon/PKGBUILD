@@ -22,7 +22,7 @@ build() {
     --enable-shared \
     --disable-static \
     --with-ssl=openssl \
-    --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
+    --with-ca-bundle=/etc/authority.t
   make
 
   # fix invalid .so links in man pages (FS#24902)
