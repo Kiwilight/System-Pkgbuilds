@@ -1,0 +1,39 @@
+# Maintainer: Kaiting Chen <kaitocracy@gmail.com>
+# Contributor: Douglas Soares de Andrade <douglas@archlinux.org>
+
+# Enable gssapi and set service name to 'psql'
+
+pkgdesc='A sophisticated object-relational DBMS'
+url='http://www.postgresql.org/'
+
+pkgname='postgresql'
+pkgver='9.1.2'
+pkgrel='1'
+arch=('i686' 'x86_64')
+license=('BSD')
+
+depends=('perl' 'python2' 'tcl' 'heimdal'
+  'libsasl' 'openssl' 'pam'
+  'libxml2' 'libxslt' 'tzdata' 'gettext')
+conflicts=('postgresql-client')
+provides=("postgresql-libs=$pkgver")
+
+md5sums=('7dbff52221954c46595313eb7f92c3e0')
+source=("ftp://ftp.postgresql.org/pub/source/v$pkgver/$pkgname-$pkgver.tar.bz2")
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  ./configure --prefix=/usr \
+    --mandir=/usr/share/man \
+    --with-system-tzdata="/usr/share/zoneinfo" \
+    --with-perl --with-python \
+    PYTHON=/usr/bin/python2 \
+    --with-tcl --with-gssapi \
+    --with-krb-srvnam=psql \
+    --with-openssl --with-pam \
+    --with-libxml \
+    --with-libxslt --enable-nls
+  make world
+  make DESTDIR="$pkgdir" install-world
+}
