@@ -7,7 +7,7 @@ pkgdesc='A sophisticated object-relational DBMS'
 url='http://www.postgresql.org/'
 
 pkgname='postgresql'
-pkgver='9.1.2'
+pkgver='9.1.3'
 pkgrel='1'
 arch=('i686' 'x86_64')
 license=('BSD')
@@ -18,7 +18,7 @@ depends=('perl' 'python2' 'tcl' 'heimdal'
 conflicts=('postgresql-client')
 provides=("postgresql-libs=$pkgver")
 
-md5sums=('7dbff52221954c46595313eb7f92c3e0')
+md5sums=('641e1915f7ebfdc9f138e4c55b6aec0e')
 source=("ftp://ftp.postgresql.org/pub/source/v$pkgver/$pkgname-$pkgver.tar.bz2")
 
 build() {
@@ -33,7 +33,8 @@ build() {
     --with-krb-srvnam=psql \
     --with-openssl --with-pam \
     --with-libxml \
-    --with-libxslt --enable-nls
+    --with-libxslt --enable-nls \
+    --enable-thread-safety
   make world
   make DESTDIR="$pkgdir" install-world
 }
